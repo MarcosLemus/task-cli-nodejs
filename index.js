@@ -2,6 +2,9 @@
 
 const args = process.argv
 const command = args[2]
+const fs = require('fs')
+
+
 
 function main() {
 	switch (command) {
@@ -15,7 +18,14 @@ function main() {
 			break
 
 		// AQUÍ TU CÓDIGO PARA PROCESAR OTROS COMANDOS
-
+		case '--taskList':
+			getTasks()
+			break
+		case '--show':
+			
+			getTaskById(args[3])
+			break
+		
 		default:
 			console.log(args)
 			console.error('comando no definido')
@@ -42,11 +52,27 @@ function showVersion() {
 
 function getTasks() {
 	// AQUI TU CÓDIGO
+	fs.readFile('./data.json', 'utf-8', (err, data) => {
+		if(err){
+			console.log('se ha producido un error');
+		}
+		console.log(data);
+	} 
+	
+	)
 }
 
 function getTaskById(id) {
 	// AQUI TU CÓDIGO
+	console.log(id);
+	fs.readFile('./data.json', 'utf-8', (err, id) => {
+		if(err){
+			console.log('se ha producido un error');
+		}
+		console.log(id);
+	})
 }
+
 
 function saveData(newData) {
 	// AQUI TU CÓDIGO
